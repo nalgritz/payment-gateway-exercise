@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-// import './Form.css';
 import { FormErrors } from './FormErrors.js';
+import validator from 'validator';
 
 class Form extends Component {
   constructor (props) {
@@ -19,32 +19,33 @@ class Form extends Component {
   handleUserInput(e) {
     const name = e.target.name,
           value = e.target.value;
-    this.setState({[name]: value},
-                  () => { this.validateField(name, value) });
+    this.setState({
+      [name]: value
+    }, () => { this.validateField(name, value) });
   }
 
   validateField(fieldName, value) {
-      let fieldValidationErrors = this.state.formErrors,
-          emailValid            = this.state.emailValid,
-          passwordValid         = this.state.passwordValid;
+    let fieldValidationErrors = this.state.formErrors,
+        emailValid            = this.state.emailValid,
+        passwordValid         = this.state.passwordValid;
 
-      switch(fieldName) {
-        case 'email':
-          emailValid = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
-          fieldValidationErrors.email = emailValid ? '' : ' is invalid';
-          break;
-        case 'password':
-          passwordValid = value.length >= 6;
-          fieldValidationErrors.password = passwordValid ? '': ' is too short';
-          break;
-        default:
-          break;
-      }
+    switch(fieldName) {
+      case 'email':
+        emailValid = validator.isEmail(value);
+        fieldValidationErrors.email = emailValid ? '' : ' is invalid';
+        break;
+      case 'password':
+        passwordValid = value.length >= 6;
+        fieldValidationErrors.password = passwordValid ? '': ' is too short';
+        break;
+      default:
+        break;
+    }
 
-      this.setState({formErrors:     fieldValidationErrors,
-                      emailValid:    emailValid,
-                      passwordValid: passwordValid
-                    }, this.validateForm);
+    this.setState({formErrors:     fieldValidationErrors,
+                    emailValid:    emailValid,
+                    passwordValid: passwordValid
+                  }, this.validateForm);
   }
 
   validateForm() {
@@ -75,7 +76,7 @@ class Form extends Component {
           <label htmlFor="password">Password</label>
           <input type="password" className="form-control"
             name="password" value={this.state.password}
-            onChange={this.handleChange}
+            onChange={this.handleUserInput}
           />
         </div>
         <button type="submit" className="btn btn-primary"
