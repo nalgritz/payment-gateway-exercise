@@ -58,10 +58,6 @@ class Form extends Component {
         cardCCVValid          = this.state.cardCCVValid
 
     switch(fieldName) {
-      case 'name':
-        nameValid = validator.isAlpha(value);
-        fieldValidationErrors.name = !nameValid && ' is invalid';
-        break;
       case 'phone':
         phoneValid = validator.isMobilePhone(value);
         fieldValidationErrors.phone = !phoneValid && ' is invalid';
@@ -79,11 +75,11 @@ class Form extends Component {
         fieldValidationErrors.cardNo = !cardNoValid && ' is invalid';
         break;
       case 'cardExpiryMonth':
-        cardExpiryMonthValid = validator.isInt(value, {min: 1, max: 12, allow_leading_zeroes: true}) && value.length == 2;
+        cardExpiryMonthValid = validator.isInt(value, {min: 1, max: 12, allow_leading_zeroes: true}) && value.length === 2;
         fieldValidationErrors.cardExpiryMonth = !cardExpiryMonthValid && ' is invalid';
         break;
       case 'cardExpiryYear':
-        cardExpiryYearValid = validator.isInt(value, {min: 1, max: 99, allow_leading_zeroes: true}) && value.length == 2;
+        cardExpiryYearValid = validator.isInt(value, {min: 1, max: 99, allow_leading_zeroes: true}) && value.length === 2;
         fieldValidationErrors.cardExpiryYear = !cardExpiryYearValid && ' is invalid';
         break;
       case 'cardCCV':
@@ -135,6 +131,54 @@ class Form extends Component {
           <label htmlFor="phone">Phone Number</label>
           <input type="phone" className="form-control"
             name="phone" value={this.state.phone}
+            onChange={this.handleUserInput}
+          />
+        </div>
+        <div className={`form-group
+                       ${this.errorClass(this.state.formErrors.price)}`}>
+          <label htmlFor="price">Amount</label>
+          <input type="price" className="form-control"
+            name="price" value={this.state.price}
+            onChange={this.handleUserInput}
+          />
+        </div>
+        <div className={`form-group
+                       ${this.errorClass(this.state.formErrors.cardHolderName)}`}>
+          <label htmlFor="cardHolderName">Credit Card Holder Name</label>
+          <input type="cardHolderName" className="form-control"
+            name="cardHolderName" value={this.state.cardHolderName}
+            onChange={this.handleUserInput}
+          />
+        </div>
+        <div className={`form-group
+                       ${this.errorClass(this.state.formErrors.cardNumber)}`}>
+          <label htmlFor="cardNumber">Credit Card Number</label>
+          <input type="cardNumber" className="form-control"
+            name="cardNumber" value={this.state.cardNumber}
+            onChange={this.handleUserInput}
+          />
+        </div>
+        <div className={`form-group
+                       ${this.errorClass(this.state.formErrors.cardMonthExpiry)}`}>
+          <label htmlFor="cardMonthExpiry">Phone Number</label>
+          <input type="cardMonthExpiry" className="form-control"
+            name="cardMonthExpiry" value={this.state.cardMonthExpiry}
+            onChange={this.handleUserInput}
+          />
+        </div>
+        <div className={`form-group
+                       ${this.errorClass(this.state.formErrors.cardYearExpiry)}`}>
+          <label htmlFor="cardYearExpiry">Phone Number</label>
+          <input type="cardYearExpiry" className="form-control"
+            name="cardYearExpiry" value={this.state.cardYearExpiry}
+            onChange={this.handleUserInput}
+          />
+        </div>
+        <div className={`form-group
+                       ${this.errorClass(this.state.formErrors.cardCCV)}`}>
+          <label htmlFor="cardCCV">Phone Number</label>
+          <input type="cardCCV" className="form-control"
+            name="cardCCV" value={this.state.cardCCV}
             onChange={this.handleUserInput}
           />
         </div>
