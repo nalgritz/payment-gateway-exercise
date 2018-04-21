@@ -1,10 +1,10 @@
-const express = require('express');
+const express = require('express'),
+      env = require('dotenv').config(),
 
-const app = express();
-const port = process.env.PORT || 5000;
+      app = express(),
+      port = process.env.PORT || 5000,
+      Gateway = require('./server/config/braintree.js').gateway;
 
-app.get('/api/hello', (req, res) => {
-    res.send({ express: 'Hello From Express' });
-});
+require('./server/api/routes.js')(app);
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
