@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import PaymentForm from './PaymentForm.js';
+import Form from './Form.js';
 
 class App extends Component {
   state = {
@@ -31,7 +31,7 @@ class App extends Component {
           <h1 className="App-title">Welcome to React</h1>
         </header>
         <p className="App-intro">{this.state.response}</p>
-        <PaymentForm />
+        <Form />
       </div>
     );
   }
