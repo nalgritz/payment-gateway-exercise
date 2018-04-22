@@ -2,13 +2,35 @@ import client  from 'braintree-web/client';
 import hostedFields from 'braintree-web/hosted-fields';
 import React, { Component } from 'react';
 
+let stylesConfig = {
+      'input': {
+        'font-size': '16pt',
+        'color': '#3A3A3A'
+      },
+
+      '.number': {
+        'font-family': 'monospace'
+      },
+      '.valid': {
+        'color': 'green'
+      }
+    }, fieldsConfig = {
+      number: {
+        selector: '#card-number'
+      },
+      cvv: {
+        selector: '#cvv'
+      },
+      expirationDate: {
+        selector: '#expiration-date'
+      }
+    }
+const CLIENT_AUTHORIZATION = 'sandbox_psy3kmhq_bkkx6jjn5mtym2f7'
+
 export default class Form extends Component {
   constructor (props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  componentDidMount() {
   }
 
   onFieldChange(e) {
@@ -18,31 +40,8 @@ export default class Form extends Component {
   }
 
   handleSubmit(e) {
-    client.create({ authorization: 'sandbox_psy3kmhq_bkkx6' })
+    client.create({ authorization: CLIENT_AUTHORIZATION })
           .then((err, client) => {
-            let stylesConfig = {
-                  'input': {
-                    'font-size': '16pt',
-                    'color': '#3A3A3A'
-                  },
-
-                  '.number': {
-                    'font-family': 'monospace'
-                  },
-                  '.valid': {
-                    'color': 'green'
-                  }
-                }, fieldsConfig = {
-                  number: {
-                    selector: '#card-number'
-                  },
-                  cvv: {
-                    selector: '#cvv'
-                  },
-                  expirationDate: {
-                    selector: '#expiration-date'
-                  }
-                }
             return hostedFields.create({
               client: client,
               styles: stylesConfig,
@@ -60,12 +59,6 @@ export default class Form extends Component {
               console.error(err);
             })
           });
-  }
-
-  showError(e) {
-  }
-
-  hideError(e) {
   }
 
   render() {
