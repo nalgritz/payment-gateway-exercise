@@ -55,7 +55,13 @@ export default class PaymentForm extends Component {
       if (target.name === 'cardNumber') {
         let card = valid.number(target.value).card
         card && this.setState({ cardType: card })
-      } else (target.name === 'cardNumber') {
+      } else (target.name === 'cardExpiration') {
+        let card = valid.expirationDate(target.value)
+        this.setState({ formError: { cardExpirationValid: card.isValid }})
+      } else (target.name === 'cvv') {
+        let cvv = valid.cvv(target.value, 3)
+        this.setState({ formError: { ...this.state.formError, cvvValid: cvv.isValid }})
+      }
     })
   }
 
