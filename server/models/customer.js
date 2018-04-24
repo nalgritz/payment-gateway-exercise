@@ -15,3 +15,5 @@ const mongoose = require('mongoose'),
           cvv: Number
         }]
       });
+
+module.exports = mongoose.model('Customer', customerSchema);

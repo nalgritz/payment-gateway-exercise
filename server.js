@@ -5,6 +5,7 @@ const express = require('express'),
       port = process.env.PORT || 5000;
       // Gateway = require('./server/config/braintree.js').gateway;
 
+require('./server/config/mongoose.js');
 require('./server/api/routes.js')(app);
 
 // Gateway.clientToken.generate({
