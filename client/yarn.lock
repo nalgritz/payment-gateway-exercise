@@ -1371,7 +1371,7 @@ capture-stack-trace@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/capture-stack-trace/-/capture-stack-trace-1.0.0.tgz#4a6fa07399c26bba47f0b2496b4d0fb408c5550d"
 
-card-validator@4.3.0:
+card-validator@4.3.0, card-validator@^4.3.0:
   version "4.3.0"
   resolved "https://registry.yarnpkg.com/card-validator/-/card-validator-4.3.0.tgz#c7099055ae572eb0dd5e35c6b88414cefcb95d23"
   dependencies:
