@@ -26,7 +26,9 @@ Took much longer time than expected but am confident to work out a
 usable application. Usability Test required.
 
 Data Structure:
-  Model: Customer
+  Model:
+```
+  Customer
     name:        String,
     phoneNumber: String,
     payments: [{
@@ -39,3 +41,4 @@ Data Structure:
       cardExpiration: { month: Number, year: Number },
       cvv: Number
     }]
+```
