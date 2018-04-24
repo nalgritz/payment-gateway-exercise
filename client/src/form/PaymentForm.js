@@ -54,8 +54,8 @@ export default class PaymentForm extends Component {
     this.setState({ [target.name]: target.value }, () => {
       if (target.name === 'cardNumber') {
         let card = valid.number(target.value).card
-        card && this.setState({ cardType: card.niceType })
-      }
+        card && this.setState({ cardType: card })
+      } else (target.name === 'cardNumber') {
     })
   }
 

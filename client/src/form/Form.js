@@ -76,7 +76,7 @@ const Form = ({
            onBlur={onBlurField}
            fieldError={props.formError.cvvError} />
 
-    <input type="submit" className="btn btn-default" value={ props.cardType ? `Pay with ${props.cardType}` : 'Submit' }/>
+    <input type="submit" className="btn btn-default" value={ props.cardType.niceType ? `Pay with ${props.cardType.niceType}` : 'Submit' }/>
   </form>
 )
 
@@ -90,7 +90,7 @@ Form.propTypes = {
     cardNumber:     PropTypes.string,
     cardExpiration: PropTypes.string,
     cvv:            PropTypes.string,
-    cardType:       PropTypes.string
+    cardType:       PropTypes.object
   }),
   handleSubmit:  PropTypes.func.isRequired,
   onChangeField: PropTypes.func.isRequired,
