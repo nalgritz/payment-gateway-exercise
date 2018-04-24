@@ -6,7 +6,10 @@ const express = require('express'),
       // Gateway = require('./server/config/braintree.js').gateway;
 
 require('./server/config/mongoose.js');
+
+// Routes
 require('./server/api/routes.js')(app);
+require('./server/controllers/paymentController.js');
 
 // Gateway.clientToken.generate({
   // customerId: process.env.BT_CUSTOMERID
