@@ -10,7 +10,7 @@ const mongoose = require('mongoose'),
           price: Number,
           cardHolderName: String,
           cardNumber: Number,
-          // Expiration & Security Code should be hashes
+          // Expiration & Security Code should be in hashes
           cardExpiration: { month: Number, year: Number },
           cvv: Number
         }]

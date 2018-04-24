@@ -1,87 +1,41 @@
 # payment-gateway-exercise
 
-Resources:
-  Paypal API
-  BrainTree
-  Redis
+Setup Up instruction:
+1. Clone into local machine
+2. At sample folder copy hidden file `env` to root directory and rename
+   as `.env`
+3. At root directory & client folder type `yarn install` (should be able
+   to work task runner like Gulp)
+4. Start MongoDB server
+5. At root directory type `yarn dev`;
+6. Server should work
 
+Sorry to tell the application is not working yet. Things has been done as follow:
+1. Create payment form
+2. Credit card number, expiration date & CVV number validation
+3. Card Type showes up when inputting credit card number
+4. Server end connection with MongoDB
+5. Set up customer schema
 
-Create Payment:
-  React Form:
-    a. Order Section
-      i. Customer Name
-      ii. Customer Phone Number
-      iii. Currency (HKD, USD, AUD, EUR, JPY, CNY)
-      iv. Price
-    b. Payment Section
-      i. Credit card holder name
-      ii. Credit card number
-      iii. Credit card expiration
-      iv. Credit card CCV
-    c. Submit Button
+Reflection:
+Spent too much time on researching react form validation (changed 3-4
+different packages) and braintree integration. Took some time to train up
+stateless & container components practices.
 
-  Before form submission:
-  ALL form validation;
+Took much longer time than expected but am confident to work out a
+usable application. Usability Test required.
 
-  After form submission, return:
-
-  2 gateway objects: A & B
-  GatewayA: card: AMEX; Currencies: USD, AUD, EUR, JPY, CNY
-  GatewayB: HKD
-
-  Back-end:
-    Save to DB
-    Send using BrainTree API (process in nonce)
-    return response from payment gateway to database table # doubt? OR memory
-cache 
-
-  Front-end:
-    Error or Success (as lightbox/notification)
-
-
-Check Payment:
-  React Form:
-    Customer Name
-    Reference code
-
-  If success, return:
-    Customer Name
-    Customer Phone Number
-    Currency
-    Price
-  If fail, return:
-    'Record Not Found' Message
-
-
-
-
-
-Check Payment
-6. Create a Payment Checking Form​ to check the payment record by
-   Customer name,
-and payment reference code. If success, show Customer Name, Customer
-Phone
-Number, Currency and Price. If failed, show Lightbox of Record No Found
-Message
-7. The record should get from memory caching instead of database
-
-Hints for Bonus
-1. Consider cache may expired when check order record;
-2. Consider how to guarantee payment record are found in your cache /
-   database​ and payment gateway;
-3. Consider how to add additional payment gateways;
-
-Specification
-1. Use either PHP or NodeJS​ and MVC framework that is your
-   favorites.
-2. Don’t bother with any fancy UI, just use UI Framework such as
-   Bootstrap
-3. You can use React JS/ Angular JS / jQuery for form validation.
-4. Use only redis for memory caching​ &
-5. Use any database engine for persistent​ is a must
-6. No need to store the credit card information unless you really want
-   to try.
-7. The code needs to work after we clone it and try it (no bugs) and
-   should process the payments.
-8. Please prepare the document for the data structure and detail setup
-   instruction or/and publicly accessible URL.
+Data Structure:
+  Model: Customer
+    name:        String,
+    phoneNumber: String,
+    payments: [{
+      refCode: Number,
+      currency: String,
+      price: Number,
+      cardHolderName: String,
+      cardNumber: Number,
+      // Expiration & Security Code should be in hashes
+      cardExpiration: { month: Number, year: Number },
+      cvv: Number
+    }]
